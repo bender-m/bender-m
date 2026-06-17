@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My School Life – Bender Mustefa</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+
+    /* ═══════════════════════════════
+       CSS VARIABLES
+    ═══════════════════════════════ */
+    :root {
+      --bg:        #f0f4f0;
+      --surface:   #ffffff;
+      --ink:       #1b2118;
+      --muted:     #5e6b5a;
+      --accent:    #3a7d44;   /* forest green */
+      --accent2:   #e8a020;   /* warm gold */
+      --border:    #d6e0d4;
+      --radius:    10px;
+      --max-w:     800px;
+      --nav-h:     62px;
+    }
+
+    /* ═══════════════════════════════
+       RESET & BASE
+    ═══════════════════════════════ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Outfit', sans-serif;
+      font-weight: 300;
+      line-height: 1.85;
+    }
+
+    /* ═══════════════════════════════
+       NAVIGATION
+    ═══════════════════════════════ */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      height: var(--nav-h);
+      background: rgba(240, 244, 240, 0.93);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2.2rem;
+    }
+
+    .nav-brand {
+      font-family: 'Lora', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--accent);
+      text-decoration: none;
+      letter-spacing: 0.01em;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 1.8rem;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--accent); }
+
+    /* ═══════════════════════════════
+       PAGE WRAPPER
+    ═══════════════════════════════ */
+    .page {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 3rem 1.5rem 6rem;
+    }
+
+    /* ═══════════════════════════════
+       HERO HEADER
+    ═══════════════════════════════ */
+    .hero {
+      text-align: center;
+      padding: 3.5rem 1rem 2.8rem;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 3rem;
+    }
+
+    .hero-tag {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: #dff0e2;
+      border: 1px solid #b8d9bc;
+      border-radius: 50px;
+      padding: 0.25rem 0.9rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .hero h1 {
+      font-family: 'Lora', serif;
+      font-size: clamp(1.9rem, 5vw, 2.75rem);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+      color: var(--ink);
+    }
+
+    .hero h1 em {
+      color: var(--accent);
+      font-style: italic;
+    }
+
+    .hero-meta {
+      font-size: 0.84rem;
+      color: var(--muted);
+      letter-spacing: 0.03em;
+    }
+
+    .hero-meta span { margin: 0 0.5rem; opacity: 0.35; }
+
+    /* ═══════════════════════════════
+       SECTIONS
+    ═══════════════════════════════ */
+    section { margin-bottom: 3rem; }
+
+    section h2 {
+      font-family: 'Lora', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    section h2::after {
+      content: '';
+      flex: 1;
+      height: 2px;
+      background: linear-gradient(to right, var(--accent), transparent);
+      border-radius: 2px;
+    }
+
+    section p {
+      margin-bottom: 1rem;
+      color: #2a3327;
+    }
+
+    section p strong { color: var(--accent); font-weight: 600; }
+
+    /* ═══════════════════════════════
+       ELEMENT 1 — UNORDERED LIST (Hobbies)
+    ═══════════════════════════════ */
+    .hobbies-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+      margin-top: 1rem;
+    }
+
+    .hobbies-list li {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--accent);
+      border-radius: var(--radius);
+      padding: 0.85rem 1.2rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.9rem;
+      font-size: 0.93rem;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+
+    .hobbies-list li:hover {
+      box-shadow: 0 4px 16px rgba(58,125,68,0.1);
+      transform: translateX(4px);
+    }
+
+    .hobbies-list .icon {
+      font-size: 1.5rem;
+      line-height: 1;
+      flex-shrink: 0;
+      margin-top: 0.1rem;
+    }
+
+    .hobbies-list .label {
+      font-weight: 600;
+      color: var(--accent);
+      display: block;
+      margin-bottom: 0.15rem;
+      font-family: 'Lora', serif;
+    }
+
+    /* ═══════════════════════════════
+       ELEMENT 2 — BLOCKQUOTE
+    ═══════════════════════════════ */
+    blockquote {
+      position: relative;
+      margin: 1.8rem 0;
+      padding: 1.2rem 1.5rem 1.2rem 2rem;
+      background: #f6fbf6;
+      border-left: 4px solid var(--accent2);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      font-family: 'Lora', serif;
+      font-style: italic;
+      color: var(--muted);
+      font-size: 1.05rem;
+      line-height: 1.7;
+    }
+
+    blockquote::before {
+      content: '\201C';
+      position: absolute;
+      top: -0.3rem;
+      left: 0.6rem;
+      font-size: 3.5rem;
+      color: var(--accent2);
+      opacity: 0.35;
+      font-family: 'Lora', serif;
+      line-height: 1;
+    }
+
+    /* ═══════════════════════════════
+       EVENT CARDS (Activities section)
+    ═══════════════════════════════ */
+    .events-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .event-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.2rem 1.1rem;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .event-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 22px rgba(0,0,0,0.07);
+    }
+
+    .event-card .ev-icon { font-size: 1.9rem; margin-bottom: 0.5rem; }
+
+    .event-card h3 {
+      font-family: 'Lora', serif;
+      font-size: 0.98rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 0.4rem;
+    }
+
+    .event-card p { font-size: 0.84rem; color: var(--muted); margin: 0; }
+
+    /* ═══════════════════════════════
+       ELEMENT 3 — TABLE
+    ═══════════════════════════════ */
+    .table-wrap {
+      overflow-x: auto;
+      margin-top: 1rem;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+      background: var(--surface);
+    }
+
+    thead {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    thead th {
+      padding: 0.85rem 1.1rem;
+      text-align: left;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-size: 0.74rem;
+    }
+
+    tbody tr { border-bottom: 1px solid var(--border); }
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:hover { background: #f4faf5; }
+
+    tbody td {
+      padding: 0.8rem 1.1rem;
+      vertical-align: top;
+      color: #2a3327;
+    }
+
+    tbody td:first-child {
+      font-weight: 600;
+      color: var(--accent);
+      font-family: 'Lora', serif;
+    }
+
+    .skill-pill {
+      display: inline-block;
+      background: #dff0e2;
+      color: #2a6b36;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      padding: 0.18rem 0.6rem;
+      border-radius: 50px;
+      border: 1px solid #b8d9bc;
+    }
+
+    /* ═══════════════════════════════
+       FOOTER
+    ═══════════════════════════════ */
+    footer {
+      text-align: center;
+      margin-top: 3rem;
+      padding-top: 1.8rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    footer strong { color: var(--accent); }
+
+    /* ═══════════════════════════════
+       RESPONSIVE
+    ═══════════════════════════════ */
+    @media (max-width: 540px) {
+      nav { padding: 0 1rem; }
+      .nav-links { gap: 1rem; }
+      .nav-links a { font-size: 0.73rem; }
+      .events-grid { grid-template-columns: 1fr; }
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- ════════════════════════════
+       NAVIGATION
+  ════════════════════════════ -->
+  <nav>
+    <a class="nav-brand" href="#top">Bender Mustefa</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#hobbies">Hobbies</a></li>
+      <li><a href="#activities">Activities</a></li>
+      <li><a href="#summary">Summary</a></li>
+    </ul>
+  </nav>
+
+  <div class="page" id="top">
+
+    <!-- ════════════════════════════
+         HERO
+    ════════════════════════════ -->
+    <header class="hero">
+      <div class="hero-tag">Personal Reflection · Grade 11</div>
+      <h1>My School Life,<br><em>Hobbies &amp; Activities</em></h1>
+      <p class="hero-meta">
+        Bender Mustefa
+        <span>|</span>
+        Ethiopian International School Riyadh
+        <span>|</span>
+        2024 – 2025
+      </p>
+    </header>
+
+    <!-- ════════════════════════════
+         ABOUT
+    ════════════════════════════ -->
+    <section id="about">
+      <h2>About Me</h2>
+      <p>
+        My name is Bender Mustefa, and I am a Grade 11 student at Ethiopian International School Riyadh.
+        I believe that school is one of the most important parts of life because it helps students gain
+        knowledge, improve their personalities, and prepare for the future.
+      </p>
+      <p>
+        Being a student is not only about studying subjects like mathematics, science, and English, but
+        also about learning important life skills such as teamwork, leadership, communication, and
+        responsibility. I always try to balance my education with hobbies and extracurricular activities
+        because they make life more enjoyable and meaningful.
+      </p>
+
+      <blockquote>
+        Students should participate in activities outside the classroom because they teach lessons that cannot always be learned from books alone.
+      </blockquote>
+    </section>
+
+    <!-- ════════════════════════════
+         HOBBIES  ← ELEMENT 1: Unordered List
+    ════════════════════════════ -->
+    <section id="hobbies">
+      <h2>My Hobbies</h2>
+      <p>Outside of school, I have several hobbies that are an important part of my life. Here are the activities I enjoy most and what each one has taught me:</p>
+
+      <ul class="hobbies-list">
+        <li>
+          <span class="icon">⚽</span>
+          <div>
+            <span class="label">Football</span>
+            My favorite sport. It teaches teamwork, discipline, patience, and how to stay calm under pressure. It also helps me stay physically healthy and relieve stress after school.
+          </div>
+        </li>
+        <li>
+          <span class="icon">🎵</span>
+          <div>
+            <span class="label">Listening to Music</span>
+            Music helps me relax and stay motivated. I sometimes listen while studying because it helps me concentrate and remain calm.
+          </div>
+        </li>
+        <li>
+          <span class="icon">🍳</span>
+          <div>
+            <span class="label">Cooking</span>
+            A useful and creative skill. Preparing meals for family and friends teaches patience, organization, and responsibility, and gives me a sense of independence.
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <!-- ════════════════════════════
+         ACTIVITIES  ← Event Cards + Blockquote (ELEMENT 2)
+    ════════════════════════════ -->
+    <section id="activities">
+      <h2>School Activities</h2>
+      <p>
+        Throughout this school year, I participated in several important school events. Each one was a
+        unique experience that helped me develop new skills and create lasting memories.
+      </p>
+
+      <div class="events-grid">
+        <div class="event-card">
+          <div class="ev-icon">🌍</div>
+          <h3>Culture Day</h3>
+          <p>Proudly represented Eritrean culture — sharing traditions, clothing, food, and history with the school community.</p>
+        </div>
+        <div class="event-card">
+          <div class="ev-icon">🎮</div>
+          <h3>Clubs Day</h3>
+          <p>Part of the IT &amp; Gaming Club. Introduced interactive games for students, improving communication and creativity.</p>
+        </div>
+        <div class="event-card">
+          <div class="ev-icon">♟️</div>
+          <h3>Math Day</h3>
+          <p>Managed the Chess Game Club, developing leadership, strategy, and organizational skills.</p>
+        </div>
+      </div>
+
+      <blockquote>
+        Culture Day taught us that diversity can bring people together and create stronger friendships and understanding.
+      </blockquote>
+    </section>
+
+    <!-- ════════════════════════════
+         SUMMARY TABLE  ← ELEMENT 3
+    ════════════════════════════ -->
+    <section id="summary">
+      <h2>Lessons Learned</h2>
+      <p>Every activity I participated in this year taught me something valuable. The table below summarizes the main lesson I took from each experience:</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Activity</th>
+              <th>Main Lesson</th>
+              <th>Skill Developed</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Football</td>
+              <td>Work together and support each other to succeed</td>
+              <td><span class="skill-pill">Teamwork</span> <span class="skill-pill">Discipline</span></td>
+            </tr>
+            <tr>
+              <td>Cooking</td>
+              <td>Every step matters when working toward a good result</td>
+              <td><span class="skill-pill">Patience</span> <span class="skill-pill">Responsibility</span></td>
+            </tr>
+            <tr>
+              <td>Culture Day</td>
+              <td>Be proud of your roots and respect others' cultures</td>
+              <td><span class="skill-pill">Cultural Awareness</span> <span class="skill-pill">Confidence</span></td>
+            </tr>
+            <tr>
+              <td>Clubs Day (IT &amp; Gaming)</td>
+              <td>Cooperation makes events successful and enjoyable</td>
+              <td><span class="skill-pill">Communication</span> <span class="skill-pill">Teamwork</span></td>
+            </tr>
+            <tr>
+              <td>Math Day (Chess Club)</td>
+              <td>Patience and strategy lead to better decisions</td>
+              <td><span class="skill-pill">Leadership</span> <span class="skill-pill">Critical Thinking</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <blockquote style="margin-top:2rem;">
+        Education is not only about studying in classrooms — it's about developing skills, building confidence, and learning from every experience.
+      </blockquote>
+    </section>
+
+    <!-- ════════════════════════════
+         FOOTER
+    ════════════════════════════ -->
+    <footer>
+      <p>Written by <strong>Bender Mustefa</strong> · Grade 11 · Ethiopian International School Riyadh · 2024–2025</p>
+    </footer>
+
+  </div><!-- /page -->
+</body>
+</html>
